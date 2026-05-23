@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yiye Chi — Academic Homepage</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Serif+SC:wght@500;600;700;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       Variables
+       ============================================================ */
+    :root {
+      --ink: #1a1d23;
+      --ink-light: #3a3d44;
+      --stone: #6b6f78;
+      --mist: #9ca0a8;
+      --snow: #fafaf9;
+      --warm: #f5f2ee;
+      --border: #e4e1dc;
+      --coral: #c4695a;
+      --coral-light: #f2e0db;
+      --sage: #5b8c6f;
+      --sage-light: #e0ede5;
+      --amber: #d4953a;
+      --amber-light: #faf0e1;
+      --shadow-sm: 0 1px 2px rgba(26,29,35,0.04);
+      --shadow: 0 2px 8px rgba(26,29,35,0.06), 0 1px 3px rgba(26,29,35,0.04);
+      --shadow-lg: 0 8px 24px rgba(26,29,35,0.08), 0 2px 8px rgba(26,29,35,0.04);
+      --radius: 8px;
+      --radius-lg: 14px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--snow);
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    }
+
+    /* Subtle dot grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+      background-size: 32px 32px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.8rem;
+    }
+
+    /* ============================================================
+       Navigation — slim top bar, no background blur
+       ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0.9rem 0;
+      transition: all 0.35s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(250,250,249,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-name {
+      font-family: 'DM Serif Display', 'Noto Serif SC', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0.3rem;
+    }
+
+    .nav-links a {
+      color: var(--stone);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.88rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      transition: all 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+      background: var(--warm);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--ink);
+    }
+
+    /* ============================================================
+       Hero — two column: left info, right research card
+       ============================================================ */
+    .hero {
+      padding: 9rem 0 5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-left {
+      text-align: left;
+    }
+
+    .hero-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--coral-light), var(--amber-light));
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 3px solid white;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 1.5rem;
+      vertical-align: middle;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-photo .placeholder-text {
+      font-size: 2.2rem;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', 'Noto Serif SC', serif;
+      font-size: 3rem;
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.025em;
+    }
+
+    .hero .tagline {
+      font-size: 1.1rem;
+      color: var(--stone);
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+    }
+
+    .hero .affiliation {
+      color: var(--mist);
+      font-size: 0.9rem;
+      margin-bottom: 1.8rem;
+      line-height: 1.7;
+    }
+
+    .hero .affiliation strong {
+      color: var(--ink-light);
+      font-weight: 600;
+    }
+
+    /* Contact pills */
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.5rem 1.15rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.86rem;
+      transition: all 0.3s ease;
+      border: 1.5px solid var(--border);
+      background: white;
+      color: var(--ink-light);
+    }
+
+    .pill:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .pill.primary {
+      background: var(--ink);
+      color: white;
+      border-color: var(--ink);
+    }
+
+    .pill.primary:hover { background: var(--ink-light); }
+
+    /* Right side — Research card */
+    .research-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .research-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--coral), var(--amber), var(--sage));
+    }
+
+    .research-card h3 {
+      font-family: 'DM Serif Display', 'Noto Serif SC', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+
+    .research-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+
+    .research-item:last-child { border-bottom: none; }
+
+    .research-item:hover {
+      padding-left: 0.4rem;
+      color: var(--ink);
+    }
+
+    .research-dot {
+      flex-shrink: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-top: 0.5rem;
+    }
+
+    .research-dot.d1 { background: var(--coral); }
+    .research-dot.d2 { background: var(--amber); }
+    .research-dot.d3 { background: var(--sage); }
+    .research-dot.d4 { background: #7b9cc4; }
+    .research-dot.d5 { background: #8e7cc3; }
+
+    .research-text {
+      font-size: 0.92rem;
+      color: var(--ink-light);
+      line-height: 1.5;
+    }
+
+    .research-text strong {
+      display: block;
+      font-size: 0.93rem;
+      color: var(--ink);
+      margin-bottom: 0.1rem;
+    }
+
+    .research-text span {
+      font-size: 0.8rem;
+      color: var(--mist);
+    }
+
+    /* ============================================================
+       Section shared
+       ============================================================ */
+    .section { padding: 5rem 0; }
+
+    .section-alt {
+      background: var(--warm);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-number {
+      display: block;
+      font-family: 'DM Serif Display', serif;
+      font-size: 0.85rem;
+      color: var(--coral);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', 'Noto Serif SC', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.015em;
+    }
+
+    .section-desc {
+      color: var(--mist);
+      font-size: 0.93rem;
+      margin-top: 0.6rem;
+    }
+
+    /* ============================================================
+       About — two column: text + quick facts
+       ============================================================ */
+    .about-grid {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .about-text {
+      font-size: 1.02rem;
+      line-height: 1.85;
+      color: var(--ink-light);
+    }
+
+    .about-text p { margin-bottom: 1.1rem; }
+
+    .about-text em {
+      color: var(--coral);
+      font-style: normal;
+    }
+
+    .quick-facts {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .fact-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .fact-card .label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--mist);
+      margin-bottom: 0.2rem;
+      font-weight: 600;
+    }
+
+    .fact-card .value {
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 0.95rem;
+    }
+
+    /* ============================================================
+       Education Timeline
+       ============================================================ */
+    .timeline {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.4rem; bottom: 0.4rem;
+      width: 2px;
+      background: var(--border);
+      border-radius: 1px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+      padding-left: 1.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.25rem; top: 0.45rem;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--coral);
+      border: 2px solid white;
+      box-shadow: 0 0 0 2px var(--coral);
+    }
+
+    .timeline-item .t-date {
+      font-size: 0.8rem;
+      color: var(--coral);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .timeline-item .t-title {
+      font-weight: 650;
+      font-size: 1.05rem;
+      color: var(--ink);
+      margin: 0.15rem 0;
+    }
+
+    .timeline-item .t-detail {
+      color: var(--stone);
+      font-size: 0.9rem;
+    }
+
+    /* ============================================================
+       News — compact list with hover highlight
+       ============================================================ */
+    .news-list {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .news-item {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+
+    .news-item:first-child { border-top: 1px solid var(--border); }
+
+    .news-item:hover {
+      padding-left: 0.6rem;
+      background: linear-gradient(90deg, var(--sage-light), transparent);
+    }
+
+    .news-badge {
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.16rem 0.7rem;
+      border-radius: 100px;
+      height: fit-content;
+      white-space: nowrap;
+    }
+
+    .badge-pub { background: var(--sage-light); color: var(--sage); }
+    .badge-award { background: var(--amber-light); color: var(--amber); }
+    .badge-event { background: var(--coral-light); color: var(--coral); }
+
+    .news-text {
+      color: var(--ink-light);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .news-text a {
+      color: var(--coral);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .news-text a:hover { text-decoration: underline; }
+
+    .news-date-inline {
+      color: var(--mist);
+      font-size: 0.82rem;
+      margin-left: 0.5rem;
+    }
+
+    /* ============================================================
+       Publications — clean list style
+       ============================================================ */
+    .pub-list {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .pub-item {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 1.5rem;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: all 0.25s ease;
+    }
+
+    .pub-item:hover {
+      background: linear-gradient(90deg, rgba(196,105,90,0.03), transparent);
+      padding-left: 1rem;
+    }
+
+    .pub-year {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--coral);
+      text-align: right;
+      padding-top: 0.15rem;
+    }
+
+    .pub-title {
+      font-size: 1.08rem;
+      font-weight: 650;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+      line-height: 1.4;
+    }
+
+    .pub-title a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .pub-title a:hover { color: var(--coral); }
+
+    .pub-meta {
+      font-size: 0.88rem;
+      color: var(--stone);
+      margin-bottom: 0.4rem;
+      font-style: italic;
+    }
+
+    .pub-meta .me {
+      font-weight: 700;
+      color: var(--ink);
+      font-style: normal;
+    }
+
+    .pub-venue {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--sage);
+      margin-bottom: 0.6rem;
+    }
+
+    .pub-links {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .pub-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.3rem 0.85rem;
+      border-radius: 5px;
+      text-decoration: none;
+      color: var(--stone);
+      background: var(--warm);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .pub-link:hover {
+      background: var(--ink);
+      color: white;
+      border-color: var(--ink);
+    }
+
+    /* ============================================================
+       Awards
+       ============================================================ */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .award-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.3rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .award-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--amber);
+    }
+
+    .award-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .award-name {
+      font-weight: 650;
+      color: var(--ink);
+      margin-bottom: 0.15rem;
+    }
+
+    .award-from {
+      font-size: 0.84rem;
+      color: var(--stone);
+    }
+
+    .award-year {
+      font-size: 0.78rem;
+      color: var(--mist);
+      margin-top: 0.3rem;
+    }
+
+    /* ============================================================
+       Affiliations — logo grid
+       ============================================================ */
+    .affil-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .affil-card {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+      text-decoration: none;
+      display: block;
+    }
+
+    a.affil-card { cursor: pointer; }
+
+    a.affil-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--sage);
+    }
+
+    .affil-logo {
+      height: 40px;
+      max-width: 150px;
+      margin: 0 auto 0.8rem;
+      display: block;
+      object-fit: contain;
+      opacity: 0.90;
+      transition: opacity 0.25s ease;
+    }
+
+    a.affil-card:hover .affil-logo { opacity: 1; }
+
+    .affil-name {
+      font-weight: 650;
+      color: var(--ink);
+      font-size: 0.88rem;
+      margin-bottom: 0.15rem;
+      line-height: 1.3;
+    }
+
+    .affil-role {
+      font-size: 0.76rem;
+      color: var(--mist);
+    }
+
+    /* ============================================================
+       Footer
+       ============================================================ */
+    .footer {
+      text-align: center;
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      color: var(--mist);
+      font-size: 0.85rem;
+    }
+
+    .footer a {
+      color: var(--stone);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer a:hover { color: var(--coral); }
+
+    .footer .divider { margin: 0 0.5rem; color: var(--border); }
+
+    /* Back to top */
+    .back-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all 0.35s ease;
+      pointer-events: none;
+      z-index: 99;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .back-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .back-top:hover {
+      background: var(--coral);
+      transform: translateY(-3px);
+    }
+
+    /* ============================================================
+       Responsive
+       ============================================================ */
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-left { text-align: center; }
+      .contact-row { justify-content: center; }
+      .research-card { margin-top: 1rem; }
+      .hero h1 { font-size: 2.3rem; }
+      .awards-grid { grid-template-columns: 1fr; }
+      .affil-grid { grid-template-columns: 1fr 1fr; }
+      .pub-item { grid-template-columns: 1fr; }
+      .pub-year { text-align: left; font-size: 1rem; margin-bottom: -0.5rem; }
+      .timeline { padding-left: 1.5rem; }
+      .timeline-item { padding-left: 1rem; }
+      .timeline-item::before { left: -1.75rem; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: white;
+        padding: 0.8rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-lg);
+        gap: 0;
+      }
+      .nav-links.active a {
+        padding: 0.7rem 0.5rem;
+        border-bottom: 1px solid var(--border);
+        border-radius: 0;
+      }
+      .hero { padding: 7rem 0 3.5rem; }
+      .hero h1 { font-size: 2rem; }
+      .section { padding: 3.5rem 0; }
+      .section-title { font-size: 1.7rem; }
+      .affil-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       Navigation
+       ============================================================ -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="nav-name">Yiye Chi</a>
+      <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#affiliations">Affiliations</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       Hero
+       ============================================================ -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- Left: Basic Info -->
+        <div class="hero-left">
+          <div class="hero-photo">
+            <img src="照片.jpg" alt="Yiye Chi">
+          </div>
+
+          <h1>Yiye Chi</h1>
+          <p class="tagline">Bioinformatics Undergraduate · Single-cell Omics & Multi-omics Integration</p>
+          <p class="affiliation">
+            <strong>The Chinese University of Hong Kong, Shenzhen</strong><br>
+            School of Medicine · Bioinformatics<br>
+            Shenzhen, China
+          </p>
+
+          <div class="contact-row">
+            <a href="mailto:yiyechi@link.cuhk.edu.cn" class="pill primary">📧 Email</a>
+            <a href="池易烨简历_CUHK(SZ).pdf" target="_blank" class="pill">📄 CV / Resume</a>
+            <a href="https://github.com/" target="_blank" class="pill">💻 GitHub</a>
+          </div>
+        </div>
+
+        <!-- Right: Research Interests Card -->
+        <div class="research-card">
+          <h3>Research Interests</h3>
+
+          <div class="research-item">
+            <div class="research-dot d1"></div>
+            <div class="research-text">
+              <strong>Single-cell Omics</strong>
+            </div>
+          </div>
+
+          <div class="research-item">
+            <div class="research-dot d2"></div>
+            <div class="research-text">
+              <strong>Multi-omics Data Integration</strong>
+            </div>
+          </div>
+
+          <div class="research-item">
+            <div class="research-dot d3"></div>
+            <div class="research-text">
+              <strong>Machine Learning</strong>
+            </div>
+          </div>
+
+          <div class="research-item">
+            <div class="research-dot d4"></div>
+            <div class="research-text">
+              <strong>AI-assisted Drug Metabolism</strong>
+            </div>
+          </div>
+
+          <div class="research-item">
+            <div class="research-dot d5"></div>
+            <div class="research-text">
+              <strong>Computational Biology & Chemistry</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       About
+       ============================================================ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">01</span>
+        <h2 class="section-title">About Me</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I am an undergraduate student majoring in Bioinformatics at
+            <em>The Chinese University of Hong Kong, Shenzhen</em> School of Medicine,
+            expected to graduate in 2027. My research interests focus on
+            <em>single-cell omics</em>, <em>multi-omics data integration</em>,
+            and <em>computational biology</em>.
+          </p>
+          <p>
+            I am particularly familiar with <em>single-cell RNA-seq data analysis</em>
+            pipelines, including quality control, clustering, cell type annotation,
+            differential expression analysis, and downstream biological interpretation.
+            I am also interested in applying <em>machine learning</em> and
+            <em>AI-based approaches</em> to biomedical research and precision medicine.
+          </p>
+          <p>
+            In Summer 2025, I worked as a visiting student at the
+            <em>SMART Shenzhen Institutes of Advanced Technology</em>, where I analyzed
+            single-cell transcriptomic data of intracardiac neurons and contributed to
+            a mouse sleep-related project. In Spring 2026, I joined
+            <em>University of California, Berkeley</em> as an exchange student and
+            Undergraduate Visiting Researcher in <em>Prof. Peng He's laboratory</em>
+            at the <em>University of California, San Francisco</em>, focusing on
+            identifying rare cell types in human kidney tumors through integrated cell
+            atlases. I later interned at <em>Merck Serono</em> as a Medical Affairs
+            Intern, supporting clinical medicine with scientific and biomedical
+            research insights. These experiences further strengthened my interest in
+            computational biology and translational biomedical research.
+          </p>
+          <p>
+            I am passionate about applying computational approaches to biomedical
+            research, particularly in single-cell and multi-omics data analysis.
+            I am also interested in the potential of AI-driven methods in biology
+            and medicine, and I hope to contribute to the next generation of
+            computational tools that bridge <em>biology</em>, <em>medicine</em>,
+            and <em>artificial intelligence</em>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Education Timeline
+       ============================================================ -->
+  <section class="section section-alt" id="education">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">02</span>
+        <h2 class="section-title">Education</h2>
+        <p class="section-desc">Academic journey</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="t-date">Jan — May 2026</div>
+          <div class="t-title">Exchange Student · Undergraduate Visiting Researcher</div>
+          <div class="t-detail">UC Berkeley & UCSF — Prof. Peng He's Lab · Single-cell Kidney Tumor Atlas</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-date">Summer 2025</div>
+          <div class="t-title">Visiting Student</div>
+          <div class="t-detail">SMART Shenzhen Institutes of Advanced Technology · Single-cell Transcriptomics</div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-date">2023 — 2027 (Expected)</div>
+          <div class="t-title">B.S. in Bioinformatics</div>
+          <div class="t-detail">The Chinese University of Hong Kong, Shenzhen — School of Medicine</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       News
+       ============================================================ -->
+  <section class="section" id="news">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">03</span>
+        <h2 class="section-title">Recent News</h2>
+      </div>
+
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-badge badge-event">Research</div>
+          <div class="news-text">
+            Joined <strong>Prof. Peng He's Lab at UCSF</strong> as an Undergraduate Visiting Researcher — identifying rare cell types in human kidney tumors via integrated cell atlases.
+            <span class="news-date-inline">Spring 2026</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-badge badge-event">Internship</div>
+          <div class="news-text">
+            Started as a <strong>Medical Affairs Intern at Merck Serono</strong>, supporting clinical medicine with biomedical research insights.
+            <span class="news-date-inline">2026</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-badge badge-award">Award</div>
+          <div class="news-text">
+            Named to the <strong>MED Dean's List</strong> for outstanding academic performance (2025-2026).
+            <span class="news-date-inline">2026</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-badge badge-award">Award</div>
+          <div class="news-text">
+            Received the <strong>Academic Performance Scholarship</strong> of CUHK(SZ).
+            <span class="news-date-inline">2024 — 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Publications
+       ============================================================ -->
+  <section class="section section-alt" id="publications">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">04</span>
+        <h2 class="section-title">Publications</h2>
+      </div>
+
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-year">2026</div>
+          <div class="pub-info">
+            <div class="pub-title">
+              <a href="https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2026.1754036/full" target="_blank">
+                Identification of Diagnostic Blood Indicators Associated with Adenomyosis: A Retrospective Cohort Study
+              </a>
+            </div>
+            <div class="pub-meta">
+              Yuehong Tong, Jiarong Luo, <span class="me">Yiye Chi</span>, Xinyuan Cui, Jianlin Zhang, Hui Wang, Fang Yao
+            </div>
+            <div class="pub-venue">Frontiers in Endocrinology, 2026</div>
+            <div class="pub-links">
+              <a href="https://doi.org/10.3389/fendo.2026.1754036" target="_blank" class="pub-link">DOI</a>
+              <a href="https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2026.1754036/full" target="_blank" class="pub-link">Full Text</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Research Projects
+       ============================================================ -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">05</span>
+        <h2 class="section-title">Research Projects</h2>
+        <p class="section-desc">Selected research & internship experiences</p>
+      </div>
+
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-year">2025</div>
+          <div class="pub-info">
+            <div class="pub-title">
+              Single-cell Transcriptomic Analysis of Intracardiac Neurons & Mouse Sleep-related Project
+            </div>
+            <div class="pub-meta">
+              <span class="me">Yiye Chi</span> — Visiting Student
+            </div>
+            <div class="pub-venue">SMART Shenzhen Institutes of Advanced Technology</div>
+            <div class="pub-links">
+              <span class="pub-link" style="cursor:default;">scRNA-seq</span>
+              <span class="pub-link" style="cursor:default;">Neuroscience</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2026</div>
+          <div class="pub-info">
+            <div class="pub-title">
+              Identifying Rare Cell Types in Human Kidney Tumors through Integrated Cell Atlases
+            </div>
+            <div class="pub-meta">
+              <span class="me">Yiye Chi</span> — Undergraduate Visiting Researcher
+            </div>
+            <div class="pub-venue">UCSF · Prof. Peng He's Laboratory</div>
+            <div class="pub-links">
+              <span class="pub-link" style="cursor:default;">scRNA-seq</span>
+              <span class="pub-link" style="cursor:default;">Cell Atlas Integration</span>
+              <span class="pub-link" style="cursor:default;">Kidney Tumor</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2026</div>
+          <div class="pub-info">
+            <div class="pub-title">
+              Medical Affairs Intern — Merck Serono
+            </div>
+            <div class="pub-meta">
+              <span class="me">Yiye Chi</span>
+            </div>
+            <div class="pub-venue">Merck Serono · Medical Affairs</div>
+            <div class="pub-links">
+              <span class="pub-link" style="cursor:default;">Clinical Medicine</span>
+              <span class="pub-link" style="cursor:default;">Biomedical Research</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Awards
+       ============================================================ -->
+  <section class="section section-alt" id="awards">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">06</span>
+        <h2 class="section-title">Honors & Awards</h2>
+      </div>
+
+      <div class="awards-grid">
+        <div class="award-card">
+          <div class="award-icon">🏆</div>
+          <div>
+            <div class="award-name">Academic Performance Scholarship</div>
+            <div class="award-from">The Chinese University of Hong Kong, Shenzhen</div>
+            <div class="award-year">2024 — 2025</div>
+          </div>
+        </div>
+
+        <div class="award-card">
+          <div class="award-icon">🎖️</div>
+          <div>
+            <div class="award-name">MED Dean's List</div>
+            <div class="award-from">School of Medicine, CUHK(SZ)</div>
+            <div class="award-year">2024 — 2025, 2025 — 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Affiliations
+       ============================================================ -->
+  <section class="section section-alt" id="affiliations">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">07</span>
+        <h2 class="section-title">Affiliations</h2>
+        <p class="section-desc">Institutions I've worked with</p>
+      </div>
+
+      <div class="affil-grid">
+        <a class="affil-card" href="https://www.cuhk.edu.cn/en" target="_blank">
+          <img class="affil-logo" src="images/cuhksz.png" alt="CUHK, Shenzhen">
+          <div class="affil-name">CUHK, Shenzhen</div>
+          <div class="affil-role">B.S. Bioinformatics · 2023–2027</div>
+        </a>
+
+        <a class="affil-card" href="https://www.berkeley.edu/" target="_blank">
+          <img class="affil-logo" src="images/ucb.png" alt="UC Berkeley">
+          <div class="affil-name">UC Berkeley</div>
+          <div class="affil-role">Exchange · Spring 2026</div>
+        </a>
+
+        <a class="affil-card" href="https://www.ucsf.edu/" target="_blank">
+          <img class="affil-logo" src="images/ucsf.png" alt="UCSF">
+          <div class="affil-name">UC San Francisco</div>
+          <div class="affil-role">Visiting Researcher · 2026</div>
+        </a>
+
+        <a class="affil-card" href="https://www.smart.org.cn/" target="_blank">
+          <img class="affil-logo" src="images/smart.png" alt="SMART SIAT">
+          <div class="affil-name">SMART SIAT</div>
+          <div class="affil-role">Visiting Student · 2025</div>
+        </a>
+
+        <a class="affil-card" href="https://www.merckgroup.com/en" target="_blank">
+          <img class="affil-logo" src="images/merck.png" alt="Merck">
+          <div class="affil-name">Merck Serono</div>
+          <div class="affil-role">Medical Affairs Intern · 2026</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Footer
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 — 2026 Yiye Chi</p>
+      <p>
+        <a href="mailto:yiyechi@link.cuhk.edu.cn">Email</a>
+        <span class="divider">·</span>
+        <a href="https://scholar.google.com/" target="_blank">Scholar</a>
+        <span class="divider">·</span>
+        <a href="https://github.com/" target="_blank">GitHub</a>
+        <span class="divider">·</span>
+        <a href="#">Back to top ↑</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Back to top button -->
+  <button class="back-top" id="backTop" aria-label="回到顶部" title="回到顶部">↑</button>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Back to top
+    const backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', () => {
+      backTop.classList.toggle('visible', window.scrollY > 500);
+    });
+    backTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Mobile nav
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('active'));
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => links.classList.remove('active'));
+    });
+  </script>
+</body>
+</html>
